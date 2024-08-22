@@ -1,0 +1,19 @@
+name: ./run.sh
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  run:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: git clone
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: ./run.sh
+        run: ./run.sh
